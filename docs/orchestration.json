@@ -9,10 +9,17 @@
     "markdown",
     "json"
   ],
+  "releaseGate": [
+    "npm ci",
+    "npm run release:check",
+    "npm run smoke",
+    "bash scripts/validate.sh"
+  ],
   "manifest": {
     "stableGeneratedAt": "1970-01-01T00:00:00.000Z",
     "tracksIncludedFiles": true,
     "tracksOmittedFiles": true,
-    "tracksRedactions": true
+    "tracksRedactions": true,
+    "tracksPinnedGlobMatches": true
   }
 }

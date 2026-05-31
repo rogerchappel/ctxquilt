@@ -1,6 +1,6 @@
 # ctxquilt PRD
 
-Status: in-progress
+Status: release-candidate
 
 ## Summary
 
@@ -54,3 +54,6 @@ ctxquilt explain context.json
 
 - Context packs are stable across runs for the same inputs.
 - Redaction and omitted-file reasons are visible in the manifest.
+- Pinned file globs are included and marked as pinned in manifest metadata.
+- Release readiness is verified with typecheck, fixture-backed tests, package
+  dry-run, and CLI smoke commands.

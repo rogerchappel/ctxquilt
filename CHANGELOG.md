@@ -9,7 +9,15 @@ format and uses semantic versioning when versioned releases are published.
 
 ### Added
 
-- Initial project setup.
+- Local-first MVP CLI for deterministic markdown and JSON context bundles.
+- Fixture-backed coverage for redaction, gitignore behavior, omitted reasons,
+  and pinned glob manifests.
+- Release-candidate docs, orchestration metadata, example config, and package
+  metadata.
+
+### Fixed
+
+- Files matched by pinned globs are now marked as pinned in bundle manifests.
 
 ## Release Links
 

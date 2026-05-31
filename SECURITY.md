@@ -2,18 +2,14 @@
 
 ## Supported Versions
 
-Replace this section with the supported versions for `ctxquilt`.
+ctxquilt has not published a stable release yet. Until the first published
+version exists, only the current `main` branch and active release-candidate
+branches are reviewed for security fixes.
 
-Example:
-
-```md
 | Version | Supported |
 | --- | --- |
-| .x | Yes |
-| < .0 | No |
-```
-
-If the project does not publish versioned releases yet, say that clearly.
+| `main` / release candidates | Yes |
+| Published npm versions | Not yet published |
 
 ## Reporting a Vulnerability
 
@@ -46,6 +42,7 @@ In scope:
 - Vulnerabilities in ctxquilt.
 - Insecure default configuration shipped by this project.
 - CI, release, or dependency guidance maintained by this project.
+- Redaction bypasses that expose obvious env-style secrets in generated bundles.
 
 Out of scope:
 

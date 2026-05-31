@@ -7,7 +7,8 @@ manifest that explains what was included and omitted.
 
 ## Status
 
-Early MVP. The CLI is usable locally, but the package is not published yet.
+Local-first MVP. The CLI is usable locally, covered by fixture-backed tests, and
+ready for release-candidate review. The package is not published yet.
 
 ## Install
 
@@ -53,6 +54,22 @@ Example config:
 }
 ```
 
+See [examples/ctxquilt.json](examples/ctxquilt.json) for a copyable starter
+config.
+
+## Output Contract
+
+Every bundle contains:
+
+- A manifest with stable `generatedAt`, root, format, budget, include/exclude
+  inputs, pinned files, included file metadata, omitted file reasons, redaction
+  counts, and total estimated tokens.
+- File content after redaction.
+- Deterministic ordering for reproducible output across identical inputs.
+
+Pinned files bypass token budget and per-file byte limits, and the manifest marks
+files matched by pinned globs as pinned.
+
 ## Verify
 
 Run the local validation script before opening a pull request:
@@ -83,6 +100,17 @@ should be small, reviewable, and verified before review.
 ctxquilt includes default redaction for env-looking secret assignments and URL
 credentials, but context bundles should still be reviewed before sharing. See
 [SECURITY.md](SECURITY.md) for vulnerability reporting guidance.
+
+## Release Readiness
+
+Before tagging a release candidate, run:
+
+```sh
+npm ci
+npm run release:check
+npm run smoke
+bash scripts/validate.sh
+```
 
 ## License
 
