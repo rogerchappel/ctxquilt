@@ -1,19 +1,20 @@
 import { readFile, stat } from "node:fs/promises";
 import { join } from "node:path";
-import { discoverFiles } from "./discover.js";
+import { discoverSelection } from "./discover.js";
 import { applyRedactions } from "./redact.js";
 import { byteLength, decodeText, isProbablyBinary } from "./text.js";
 import { estimateTokens } from "./tokens.js";
 import type { ContextBundle, ContextManifest, IncludedFile, OmittedFile, ResolvedPackOptions } from "./types.js";
 
 export async function packRepository(options: ResolvedPackOptions): Promise<ContextBundle> {
-  const paths = await discoverFiles(options);
+  const discovered = await discoverSelection(options);
+  const paths = discovered.paths;
   const files: IncludedFile[] = [];
   const omitted: OmittedFile[] = [];
   let totalTokens = 0;
 
   for (const path of paths) {
-    const pinned = options.pinned.includes(path);
+    const pinned = discovered.pinned.has(path);
     const absolutePath = join(options.root, path);
 
     try {
