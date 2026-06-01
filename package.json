@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "description": "Pack compact, reproducible repository context bundles for coding agents.",
   "type": "module",
+  "homepage": "https://github.com/rogerchappel/ctxquilt#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/rogerchappel/ctxquilt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rogerchappel/ctxquilt/issues"
+  },
   "bin": {
     "ctxquilt": "./dist/src/cli.js"
   },
@@ -16,9 +24,17 @@
   },
   "files": [
     "dist/src",
+    "docs",
+    "examples",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
     "README.md",
+    "SECURITY.md",
     "LICENSE"
   ],
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "check": "tsc -p tsconfig.json --noEmit",

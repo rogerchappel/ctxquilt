@@ -1,5 +1,5 @@
 import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { afterEach, beforeEach, describe, it } from "node:test";
 import assert from "node:assert/strict";
@@ -65,5 +65,38 @@ describe("ctxquilt", () => {
     const second = renderMarkdown(await packRepository(options));
 
     assert.equal(first, second);
+  });
+
+  it("marks files included by pinned globs as pinned", async () => {
+    const fixtureRoot = resolve("tests/fixtures/sample-project");
+    const options = resolveOptions({}, {
+      root: fixtureRoot,
+      include: ["README.md"],
+      pinned: ["docs/*.md"],
+      budget: 1
+    });
+
+    const bundle = await packRepository(options);
+    const prd = bundle.files.find((file) => file.path === "docs/PRD.md");
+
+    assert.equal(prd?.pinned, true);
+    assert.equal(bundle.manifest.files.find((file) => file.path === "docs/PRD.md")?.pinned, true);
+    assert.equal(bundle.manifest.omitted.some((file) => file.path === "README.md" && file.reason === "over-budget"), true);
+  });
+
+  it("uses static fixtures for gitignore and default redaction coverage", async () => {
+    const fixtureRoot = resolve("tests/fixtures/sample-project");
+    const options = resolveOptions({}, {
+      root: fixtureRoot,
+      include: ["**/*"],
+      budget: 1000
+    });
+
+    const bundle = await packRepository(options);
+    const env = bundle.files.find((file) => file.path === ".env");
+
+    assert.equal(bundle.files.some((file) => file.path === "ignored/ignored.txt"), false);
+    assert.match(env?.content ?? "", /API_TOKEN=\[REDACTED\]/u);
+    assert.equal(env?.redactions["env-secret"], 1);
   });
 });

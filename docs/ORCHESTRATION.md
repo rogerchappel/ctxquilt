@@ -25,3 +25,18 @@ ctxquilt pack \
 
 The output manifest records inputs, included files, omitted files, redaction
 counts, and estimated token totals so another agent can reproduce the pack.
+
+## Release Candidate Gate
+
+Factory and orchestration workers should treat the MVP as ship-ready only when
+these local gates pass from a clean checkout:
+
+```bash
+npm ci
+npm run release:check
+npm run smoke
+bash scripts/validate.sh
+```
+
+If any gate fails, push the branch to `incubate/ctxquilt` and record blockers in
+the release-candidate pull request.

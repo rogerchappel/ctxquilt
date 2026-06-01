@@ -13,7 +13,12 @@ const BUILT_IN_IGNORES = [
   ".DS_Store"
 ];
 
-export async function discoverFiles(options: ResolvedPackOptions): Promise<string[]> {
+export interface DiscoveredFiles {
+  paths: string[];
+  pinned: Set<string>;
+}
+
+export async function discoverSelection(options: ResolvedPackOptions): Promise<DiscoveredFiles> {
   const ignorePatterns = [...BUILT_IN_IGNORES, ...options.exclude];
   const entries = await fg(options.include, {
     cwd: options.root,
@@ -34,13 +39,21 @@ export async function discoverFiles(options: ResolvedPackOptions): Promise<strin
   });
 
   const candidates = sortPaths(unique([...entries, ...pinned]));
+  const pinnedSet = new Set(pinned);
 
   if (!options.respectGitignore) {
-    return candidates;
+    return { paths: candidates, pinned: pinnedSet };
   }
 
   const gitignore = await loadGitignore(options.root);
-  return candidates.filter((path) => !gitignore.ignores(path) || options.pinned.includes(path));
+  return {
+    paths: candidates.filter((path) => !gitignore.ignores(path) || pinnedSet.has(path)),
+    pinned: pinnedSet
+  };
+}
+
+export async function discoverFiles(options: ResolvedPackOptions): Promise<string[]> {
+  return (await discoverSelection(options)).paths;
 }
 
 async function loadGitignore(root: string) {

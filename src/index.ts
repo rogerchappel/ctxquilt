@@ -1,5 +1,5 @@
 export { loadConfig, resolveOptions } from "./config.js";
-export { discoverFiles } from "./discover.js";
+export { discoverFiles, discoverSelection } from "./discover.js";
 export { packRepository } from "./pack.js";
 export { renderJson } from "./render/json.js";
 export { parseMarkdownManifest, renderMarkdown } from "./render/markdown.js";

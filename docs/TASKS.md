@@ -10,7 +10,10 @@
 - [x] Markdown and JSON bundle rendering
 - [x] CLI `pack` and `explain` commands
 - [x] Fixture-backed tests
+- [x] Static `tests/fixtures` coverage for redaction, ignore behavior, and pinned globs
 - [x] Smoke command
+- [x] README, security, contributing, examples, package metadata, and release notes
+- [x] Release readiness validation script
 
 ## Next
 

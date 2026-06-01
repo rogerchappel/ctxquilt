@@ -1,0 +1,13 @@
+{
+  "include": ["src/**/*.ts", "README.md"],
+  "exclude": ["**/*.test.ts"],
+  "pinned": ["docs/PRD.md"],
+  "budget": 12000,
+  "format": "markdown",
+  "redact": [
+    {
+      "name": "internal-ticket",
+      "pattern": "CTX-[0-9]+"
+    }
+  ]
+}
