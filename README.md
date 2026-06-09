@@ -90,6 +90,18 @@ npm run smoke
 defined and will also run `agent-qc ready` when `agent-qc` is installed. Missing
 `agent-qc` is treated as a skip, not a failure.
 
+## Development
+
+Run the same checks maintainers use before opening a PR:
+
+```sh
+npm test
+npm run check
+npm run build
+npm run smoke
+npm run package:smoke
+npm run release:check
+```
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution expectations. Changes
