@@ -6,7 +6,7 @@
   "homepage": "https://github.com/rogerchappel/ctxquilt#readme",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/rogerchappel/ctxquilt.git"
+    "url": "git+https://github.com/rogerchappel/ctxquilt.git"
   },
   "bugs": {
     "url": "https://github.com/rogerchappel/ctxquilt/issues"
@@ -30,7 +30,8 @@
     "CONTRIBUTING.md",
     "README.md",
     "SECURITY.md",
-    "LICENSE"
+    "LICENSE",
+    "RELEASE_NOTES.md"
   ],
   "engines": {
     "node": ">=22"
@@ -60,13 +61,5 @@
   "devDependencies": {
     "@types/node": "^25.9.1",
     "typescript": "^6.0.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rogerchappel/ctxquilt.git"
-  },
-  "bugs": {
-    "url": "https://github.com/rogerchappel/ctxquilt/issues"
-  },
-  "homepage": "https://github.com/rogerchappel/ctxquilt#readme"
+  }
 }
