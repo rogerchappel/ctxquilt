@@ -31,7 +31,8 @@
     "README.md",
     "SECURITY.md",
     "LICENSE",
-    "RELEASE_NOTES.md"
+    "RELEASE_NOTES.md",
+    "CODE_OF_CONDUCT.md"
   ],
   "engines": {
     "node": ">=22"
