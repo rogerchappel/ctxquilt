@@ -5,6 +5,20 @@ ctxquilt collects text files from include globs, applies ignore rules and
 redactions, estimates token cost, and emits a markdown or JSON bundle with a
 manifest that explains what was included and omitted.
 
+
+## Quickstart
+
+Run the tool from a fresh checkout:
+
+```sh
+npm install
+npm run build
+node dist/src/cli.js --help
+npm test
+```
+
+The help command is a quick smoke test for the CLI entrypoint, and `npm test` runs the committed regression suite before you depend on the output.
+
 ## Status
 
 Local-first MVP. The CLI is usable locally, covered by fixture-backed tests, and
