@@ -43,7 +43,8 @@
     "test": "npm run build && node --test dist/**/*.test.js",
     "smoke": "npm run build && node dist/src/cli.js pack --include README.md --budget 2000 --output /tmp/ctxquilt-smoke.md && node dist/src/cli.js explain /tmp/ctxquilt-smoke.md",
     "package:smoke": "npm pack --dry-run",
-    "release:check": "npm run check && npm test && npm run smoke && npm run package:smoke"
+    "release:check": "npm run check && npm test && npm run smoke && npm run package:smoke",
+    "lint": "npm run check"
   },
   "keywords": [
     "agents",
