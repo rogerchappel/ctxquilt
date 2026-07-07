@@ -84,6 +84,17 @@ Every bundle contains:
 Pinned files bypass token budget and per-file byte limits, and the manifest marks
 files matched by pinned globs as pinned.
 
+## Limitations
+
+- ctxquilt only packages local text context selected by includes, excludes, and
+  config. It does not infer task intent or choose the best files automatically.
+- Token budgets are approximate and meant for repeatable sizing, not exact
+  provider billing or model-specific token accounting.
+- Default redaction catches common secret shapes, but generated bundles still
+  need review before they are shared outside a trusted workspace.
+- Pinned files intentionally bypass budget and size limits; use them sparingly
+  when deterministic inclusion matters more than compact output.
+
 ## Verify
 
 Run the local validation script before opening a pull request:
